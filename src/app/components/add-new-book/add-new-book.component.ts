@@ -16,12 +16,10 @@ export class AddNewBookComponent implements OnInit {
   private bookAdded: boolean;
   selectedFiles: FileList;
   currentFileUpload: File;
-  //new Code Added
   currentFile: File;
   progress = 0;
   message = "";
   fileInfos: Observable<any>;
-  //till heere
   constructor(
     private addBookService: AddBookService,
     private uploadImageService: UploadImageService,
@@ -43,7 +41,7 @@ export class AddNewBookComponent implements OnInit {
         console.log("Added Sucessfully" + response);
         this.newBook = response;
         console.log("added Book Id is----------------------" + this.newBook.id);
-        //new code ----
+       
         console.log("current id is ===============" + this.newBook.id);
         this.currentFile = this.selectedFiles.item(0);
         this.uploadFileService
@@ -56,23 +54,17 @@ export class AddNewBookComponent implements OnInit {
                 console.log(
                   "some error accures at the time of file uploading" + event
                 );
-                //this.message = event.body.message;
-                //this.fileInfos = this.uploadFileService.getFiles();
+             
               }
             },
             err => {
               console.log("error in ile uploading");
-              // this.progress = 0;
-              //this.message = "Could not upload the file!";
+           
               this.currentFile = undefined;
             }
           );
         this.selectedFiles = undefined;
-        //end here
-
-        // this.uploadImageService.upload(
-        //   JSON.parse(JSON.parse(JSON.stringify(response))._body).id
-        // );
+        
         this.bookAdded = true;
         this.newBook = new Book();
         this.newBook.active = true;
